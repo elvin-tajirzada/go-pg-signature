@@ -12,8 +12,9 @@ import (
 
 /*
 
-Here are table and procedure
+Here are table, procedure and function
 
+--Table
 CREATE TABLE IF NOT EXISTS public.users
 (
     user_id serial PRIMARY KEY,
@@ -22,6 +23,7 @@ CREATE TABLE IF NOT EXISTS public.users
     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
 );
 
+--Procedure
 CREATE OR REPLACE PROCEDURE public.create_user(
     _name INOUT VARCHAR,
     _email INOUT VARCHAR,
@@ -40,6 +42,23 @@ BEGIN
 
 END;
 $$;
+
+--Function
+CREATE OR REPLACE FUNCTION public.get_user(id INTEGER)
+    RETURNS TABLE
+            (
+                _user_id    INTEGER,
+                _name       VARCHAR,
+                _email      VARCHAR
+            )
+AS
+$$
+
+SELECT user_id, name, email
+FROM public.users
+WHERE user_id = id
+
+$$ LANGUAGE sql;
 */
 
 type User struct {
@@ -66,6 +85,10 @@ func main() {
 	}
 
 	sign := signature.NewSignature(db)
+
+	/*
+		rows, rowsErr := sign.RunFunction("public", "get_user", map[string]interface{}{ "id": 1 })
+	*/
 
 	rows, rowsErr := sign.RunProcedure("public", "create_user", map[string]interface{}{
 		"_name":  "John Doe",
