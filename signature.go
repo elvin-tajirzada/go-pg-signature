@@ -32,7 +32,7 @@ func (s *signature) RunProcedure(schemaName, procedureName string, params map[st
 
 // RunFunction function runs function that return *sqlx.Row and error
 func (s *signature) RunFunction(schemaName, functionName string, params map[string]interface{}) (*sqlx.Rows, error) {
-	query := "SELECT " + makeQuery(schemaName, functionName, params) + ";"
+	query := "SELECT * FROM " + makeQuery(schemaName, functionName, params) + ";"
 	return s.DB.NamedQuery(query, params)
 }
 
