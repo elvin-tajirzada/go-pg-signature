@@ -1,4 +1,6 @@
 # Go Postgres Signature Library
+[![Go Reference](https://pkg.go.dev/badge/github.com/elvin-tacirzade/go-pg-signature.svg)](https://pkg.go.dev/github.com/elvin-tacirzade/go-pg-signature)
+
 This library provides to run procedure and function for postgresql
 ## Installation
 ```
