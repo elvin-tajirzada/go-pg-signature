@@ -84,7 +84,7 @@ func main() {
 		log.Fatalf("failed to connect postgres: %v", dbErr)
 	}
 
-	sign := signature.NewSignature(db)
+	sign := signature.New(db)
 
 	/*
 		rows, rowsErr := sign.RunFunction("public", "get_user", map[string]interface{}{ "id": 1 })

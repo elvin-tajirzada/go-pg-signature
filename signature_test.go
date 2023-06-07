@@ -37,7 +37,7 @@ func TestSignature_RunProcedure(t *testing.T) {
 
 	mock.ExpectQuery(regexp.QuoteMeta(queryProcedure)).WillReturnRows(rows)
 
-	sign := NewSignature(dbx)
+	sign := New(dbx)
 
 	procedureRows, procedureRowsErr := sign.RunProcedure("public", "create_user", map[string]interface{}{
 		"_name":  "John Doe",
@@ -72,7 +72,7 @@ func TestSignature_RunFunction(t *testing.T) {
 
 	mock.ExpectQuery(regexp.QuoteMeta(queryFunction)).WillReturnRows(rows)
 
-	sign := NewSignature(dbx)
+	sign := New(dbx)
 
 	functionRows, functionRowsErr := sign.RunFunction("public", "get_user", map[string]interface{}{
 		"id": 1,

@@ -7,9 +7,9 @@ This library provides to run procedure and function for postgresql
 go get -u github.com/elvin-tacirzade/go-pg-signature
 ```
 ## Usage
-We call NewSignature function. This function takes a *sqlx.DB parameter and return ISignature interface and error.
+We call New function. This function takes *sqlx.DB parameter and return Signature interface and error.
 
-ISignature interface includes two functions:
+Signature interface includes two functions:
 1. RunProcedure()
 2. RunFunction()
 

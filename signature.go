@@ -7,9 +7,9 @@ import (
 )
 
 type (
-	// ISignature interface includes RunProcedure and RunFunction functions
-	ISignature interface {
-		RunProcedure(schemaName, procedureName string, args map[string]interface{}) (*sqlx.Rows, error)
+	// Signature interface includes RunProcedure and RunFunction functions
+	Signature interface {
+		RunProcedure(schemaName, procedureName string, params map[string]interface{}) (*sqlx.Rows, error)
 		RunFunction(schemaName, functionName string, params map[string]interface{}) (*sqlx.Rows, error)
 	}
 
@@ -19,8 +19,8 @@ type (
 	}
 )
 
-// NewSignature function creates a new signature struct
-func NewSignature(db *sqlx.DB) ISignature {
+// New function creates a new signature struct
+func New(db *sqlx.DB) Signature {
 	return &signature{DB: db}
 }
 
