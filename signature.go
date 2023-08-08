@@ -6,37 +6,29 @@ import (
 	"strings"
 )
 
-type (
-	// Signature interface includes RunProcedure and RunFunction functions
-	Signature interface {
-		RunProcedure(schemaName, procedureName string, params map[string]interface{}) (*sqlx.Rows, error)
-		RunFunction(schemaName, functionName string, params map[string]interface{}) (*sqlx.Rows, error)
-	}
-
-	// signature struct includes all dependency that uses packages
-	signature struct {
-		DB *sqlx.DB
-	}
-)
-
-// New function creates a new signature struct
-func New(db *sqlx.DB) Signature {
-	return &signature{DB: db}
+// Signature contains sqlx database and has RunProcedure and RunFunction functions
+type Signature struct {
+	DB *sqlx.DB
 }
 
-// RunProcedure function runs procedure that return *sqlx.Row and error
-func (s *signature) RunProcedure(schemaName, procedureName string, params map[string]interface{}) (*sqlx.Rows, error) {
+// New creates a new Signature
+func New(db *sqlx.DB) *Signature {
+	return &Signature{DB: db}
+}
+
+// RunProcedure runs procedure that return *sqlx.Row and error
+func (s *Signature) RunProcedure(schemaName, procedureName string, params map[string]interface{}) (*sqlx.Rows, error) {
 	query := "CALL " + makeQuery(schemaName, procedureName, params) + ";"
 	return s.DB.NamedQuery(query, params)
 }
 
-// RunFunction function runs function that return *sqlx.Row and error
-func (s *signature) RunFunction(schemaName, functionName string, params map[string]interface{}) (*sqlx.Rows, error) {
+// RunFunction runs function that return *sqlx.Row and error
+func (s *Signature) RunFunction(schemaName, functionName string, params map[string]interface{}) (*sqlx.Rows, error) {
 	query := "SELECT * FROM " + makeQuery(schemaName, functionName, params) + ";"
 	return s.DB.NamedQuery(query, params)
 }
 
-// makeQuery function makes query for a signature
+// makeQuery makes query for a signature
 func makeQuery(schemaName, signatureName string, parameters map[string]interface{}) string {
 	var params []string
 
