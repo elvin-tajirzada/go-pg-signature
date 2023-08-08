@@ -1,5 +1,7 @@
-# Go Postgres Signature Library
+![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/elvin-tacirzade/go-pg-signature?logo=go)
 [![Go Reference](https://pkg.go.dev/badge/github.com/elvin-tacirzade/go-pg-signature.svg)](https://pkg.go.dev/github.com/elvin-tacirzade/go-pg-signature)
+
+# Go Postgres Signature Library
 
 This library provides to run procedure and function for postgresql
 ## Installation
@@ -7,9 +9,9 @@ This library provides to run procedure and function for postgresql
 go get -u github.com/elvin-tacirzade/go-pg-signature
 ```
 ## Usage
-We call New function. This function takes *sqlx.DB parameter and return Signature interface and error.
+We call New function. This function takes *sqlx.DB parameter and return Signature struct.
 
-Signature interface includes two functions:
+Signature includes two functions:
 1. RunProcedure()
 2. RunFunction()
 
