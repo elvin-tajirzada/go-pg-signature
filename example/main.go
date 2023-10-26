@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	signature "github.com/elvin-tacirzade/go-pg-signature"
+	signature "github.com/elvin-tajirzada/go-pg-signature"
 	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"

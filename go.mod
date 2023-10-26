@@ -1,4 +1,4 @@
-module github.com/elvin-tacirzade/go-pg-signature
+module github.com/elvin-tajirzada/go-pg-signature
 
 go 1.18
 
